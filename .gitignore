@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+*.egg-info
+build/
+
+/.project
+/.pydevproject
+/.settings/
+tmp/
+
+*.yml
+!/example.config.yml
+/out/
+
+
+/*.pdf
+/*.PDF
+/*.csv
+/*.CSV

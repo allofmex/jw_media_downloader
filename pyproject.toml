@@ -1,0 +1,10 @@
+[project]
+name = "jw_media_downloader"
+description = "Jw media download tool package"
+version = "0.1.0"
+authors = [
+    { name = "Allofmex", email = "allofmex@web.de" }
+]
+dependencies = [
+    "beautifulsoup4",
+]
