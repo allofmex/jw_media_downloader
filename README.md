@@ -36,3 +36,14 @@ source ~/jw_media_tool_venv/bin/activate
 
 This will download all available songs to a language specific subfolder and name them like "001 - Title.mp3".
 Existing songs will be skipped, so you may run this tool periodically to add new songs.
+
+
+##### How to get the localeKey?
+
+- Download one file in desired language manually from website
+- `--localeKey` is the character(s) between '_' in the filename (German: osg_X_008.mp3 -> `x`, Japanese: osg_J_006.mp3 -> `j`)
+
+
+##### Target path
+
+`--target` option is for all locales. This tool will create subfolder by language (en, fr,..)
