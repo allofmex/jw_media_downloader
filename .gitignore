@@ -20,3 +20,8 @@ tmp/
 /*.PDF
 /*.csv
 /*.CSV
+
+# Editor Temporary Files
+*~
+*.swp
+*.swo

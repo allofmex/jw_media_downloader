@@ -1,10 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
 [project]
 name = "jw_media_downloader"
-description = "Jw media download tool package"
-version = "0.1.0"
+# Your changes are significant, so bumping the version is a good idea.
+version = "1.0.0"
+description = "A command-line tool to download media (songs, audio from magazines, etc.) from jw.org."
+readme = "README.md"
+requires-python = ">=3.8"
+# This correctly links your LICENSE file to the package metadata.
+license = { file = "LICENSE" }
+keywords = ["jw", "downloader", "media", "audio"]
 authors = [
-    { name = "Allofmex", email = "allofmex@web.de" }
+  { name="allofmex", email="allofmex@web.de" },
+  { name="techiemicky-ai" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Sound/Audio",
 ]
 dependencies = [
-    "beautifulsoup4",
+    "aiohttp",
+    "aiofiles",
 ]
+
+[project.scripts]
+jw-media-downloader = "start:main"
