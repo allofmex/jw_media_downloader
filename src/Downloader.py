@@ -13,9 +13,13 @@ class Downloader:
 
     async def load(self, media : MediaList, mediaDir : str) -> None:
         for mediaItem in media:
+            track = mediaItem.getTrackNumber()
+            if track >= 500:
+                print(f'Skipping track {track:03d} (is audio description,...)')
+                continue
             title = mediaItem.getTitle()
             url = mediaItem.getUrl()
-            track = mediaItem.getTrackNumber()
+
             fileName = f'{track:03d} - {title}.mp3'
             filePath = f'{mediaDir}/{fileName}'
 
