@@ -5,29 +5,34 @@ import sys, os, getopt, pathlib
 import asyncio
 
 def helpMsg():
-    print("JW media downloader tool")
-    print("(currently Original-Songs implemented only)")
+    print()
+    print("Tool to download collections of audio files from jw org website. (Like original songs, soundtracks,...)")
     print()
     print("Usage:")
     print("<run.sh> --target=/target/output/path --localeKey=e [--help]")
     print("t|target         Target output dir to save downloaded files")
     print("l|localeKey      Language key as used on jw org, like e for https.../lp-e/...")
+    print("p|pub            Default: osg (Original Songs). Publication key as used on jw org, like osg for https...&pub=osg&...")
+    print("                 (see link if you hover on headphone icon in browser")
     print()
 
 async def main():
     targetPath = None
     localeKey = None
+    pubKey = 'osg'
 
     print("JW media downloader tool")
 
     try:
         argumentList = sys.argv[1:]
-        options, args = getopt.getopt(argumentList, "tl:h", ["target=", "localeKey=", "help"])
+        options, args = getopt.getopt(argumentList, "tlp:h", ["target=", "localeKey=", "pubKey=", "help"])
         for opt, arg in options:
             if opt in ('t', '--target'):
                 targetPath = arg
             if opt in ('l', '--localeKey'):
                 localeKey = arg
+            if opt in ('p', '--pubKey'):
+                pubKey = arg
             if opt in ('-h', '--help'):
                 helpMsg()
                 sys.exit()
@@ -37,18 +42,20 @@ async def main():
         sys.exit(2)
 
     if targetPath is None:
-        print('No target path specified, provide --target parameter')
+        print('Failure: No target path specified, provide --target parameter')
+        helpMsg()
         sys.exit(3)
     if localeKey is None:
-        print('No locale key specified, provide --localeKey parameter')
+        print('Failure: No locale key specified, provide --localeKey parameter')
+        helpMsg()
         sys.exit(4)
 
     targetPath = os.path.expanduser(os.path.expandvars(targetPath))
     localeKey = localeKey.upper()
-    print(f'Searching for locale {localeKey}')
+    print(f'Searching for locale {localeKey} and publication {pubKey}')
     print(f'Target path is {targetPath}')
     parser = Parser(localeKey)
-    parser.load()
+    parser.load(pubKey)
     #parser.printMediaList()
 
     media = parser.getMediaList()

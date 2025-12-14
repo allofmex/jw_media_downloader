@@ -40,8 +40,14 @@ class Parser:
         self.__data = None
         self.__mediaList = None
 
-    def load(self) -> None:
-        url = self.__createUrl()
+    def load(self, pubStr : str) -> None:
+        """
+        Loading list of media items.
+    
+        Args:
+            pubStr (str): url pub arg like 'osg', 'cywst', 'gnjst1'
+        """
+        url = self.__createUrl(pubStr)
         with urlopen(url) as response:
             html_page = response.read()
             self.__data = json.loads(html_page)
@@ -65,8 +71,8 @@ class Parser:
             self.__mediaList = MediaList(self.__data['files'][self.__localeKey]['MP3'])
         return self.__mediaList
 
-    def __createUrl(self) -> str:
-        args = f'output=json&pub=osg&fileformat=MP3%2CAAC&alllangs=0&langwritten={self.__localeKey}&txtCMSLang={self.__localeKey}'
+    def __createUrl(self, pubStr : str) -> str:
+        args = f'output=json&pub={pubStr}&fileformat=MP3%2CAAC&alllangs=0&langwritten={self.__localeKey}&txtCMSLang={self.__localeKey}'
         return f'https://b.jw-cdn.org/apis/pub-media/GETPUBMEDIALINKS?{args}'
 
     def __assertLoaded(self) -> None:

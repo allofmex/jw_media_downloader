@@ -13,7 +13,7 @@ Tested on Unix only, may work also on Windows.
 Create virtual environment
 
 ```
-apt install python3.11-venv
+apt install python3.12-venv
 python3 -m venv ~/jw_media_tool_venv
 ```
 
